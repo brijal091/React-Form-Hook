@@ -36,14 +36,25 @@ const onSubmit = (data:FormValues) => {
           <p style={{color:'red'}}>{formState.errors.username?.message}</p>
   
           <label htmlFor="email">E-mail</label>
+          {/* Validations with the Validation messages */}
           <input type="email" id="email" {...register('email',{
             // Here it goes for validations
-            required:"Email Name is required."
+            required:"Email Name is required.",
+            max:{
+              value: 20,
+              message: "email can not be more than 20 char"
+            }
           })}/>
-          // showing erroe here
+           {/* showing error here */}
           <p style={{color:'red'}}>{formState.errors.email?.message}</p>
           <label htmlFor="channel">Channel</label>
-          <input type="text" id="channel" {...register('channel')} />
+
+          {/* Trting custom validation in this field, that should not accept adimn value */}
+          <input type="text" id="channel" {...register('channel',{
+            validate: {
+              
+            }
+          })} />
   
           <button>Submit</button>
         </form>
